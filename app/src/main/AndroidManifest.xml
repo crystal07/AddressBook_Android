@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.crystal.addressbook">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Tab.Address.AddressActivity" />
+        <activity android:name=".Tab.Call.KeypadActivity" />
+        <activity android:name=".Tab.Call.CallActivity" />
+        <activity android:name=".Tab.Message.MessageActivity" />
+        <activity android:name=".Tab.TabActivity" />
+        <activity android:name=".Tab.Address.ShowAddressActivity" />
+        <activity android:name=".Tab.Address.AddAddressActivity" />
+        <activity android:name=".Tab.Message.ShowMessageActivity" />
+        <activity android:name=".Tab.Message.SendMessageActivity"></activity>
+    </application>
+
+</manifest>
