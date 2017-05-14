@@ -40,10 +40,31 @@
                 android:textAlignment="center" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etTarget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="Name/Phone Number"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <Button
+                android:id="@+id/btnSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
+                android:text="Search" />
+        </LinearLayout>
+
         <ListView
             android:id="@+id/lvAddress"
             android:layout_width="match_parent"
-            android:layout_height="500dp"></ListView>
+            android:layout_height="450dp"></ListView>
 
         <Button
             android:id="@+id/btnAdd"

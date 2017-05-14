@@ -21,8 +21,6 @@ public class AddressActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address);
-
-
     }
 
     @Override
@@ -60,16 +58,18 @@ public class AddressActivity extends AppCompatActivity {
         item = new ListViewItem();
 
         //cursor 통하여 DB 추출
-        AddressDBHandler addressDB = new AddressDBHandler(getApplicationContext(), "ADDRESSBOOK.db", null, 1);
+        AddressDBHandler addressDB = AddressDBHandler.getInstance(getApplicationContext());
         String NAMES=addressDB.getName();
         String[] NAME = NAMES.split(":");
+
+        Log.e("SJ", "getItems: NAMES" + NAMES);
 
         Log.e("SJ", "getItems: length : "+NAME.length);
 
         for (int i=0; i<NAME.length; i++) {
             item.setPicture(ContextCompat.getDrawable(this, R.drawable.icon));
             item.setName(NAME[i]);
-            Log.e("SJ", "getItems: ");
+            Log.e("SJ", "getItems: name : "+NAME[i]);
         }
     }
 }

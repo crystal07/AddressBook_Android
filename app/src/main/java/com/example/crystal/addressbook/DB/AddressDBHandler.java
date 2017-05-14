@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.ContactsContract;
 import android.util.Log;
 
 /**
@@ -11,8 +12,31 @@ import android.util.Log;
  */
 
 public class AddressDBHandler extends SQLiteOpenHelper {
-    public AddressDBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+
+    private static AddressDBHandler instance;
+    private static SQLiteDatabase db;
+
+    private AddressDBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
+    }
+
+    private static void initialize(Context context) {
+        if (instance==null) {
+            instance = new AddressDBHandler(context, "ADDRESSBOOK.db", null, 1);
+            db = instance.getWritableDatabase();
+        }
+    }
+
+    public static final AddressDBHandler getInstance(Context context) {
+        initialize(context);
+        return instance;
+    }
+
+    public void close() {
+        if (instance != null) {
+            db.close();
+            instance = null;
+        }
     }
 
     @Override
@@ -26,7 +50,7 @@ public class AddressDBHandler extends SQLiteOpenHelper {
     public void INSERT(String name, String phone, String organization, String email, String memo) {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("INSERT INTO ADDRESSBOOK VALUES (null, '" + name + "', '" + phone + "', '" + organization + "', '" + email + "', '" + memo + "');");
-        Log.e("SJ", "INSERT: complete");
+        Log.e("SJ", "INSERT: name : "+name);
         db.close();
     }
 
@@ -41,8 +65,10 @@ public class AddressDBHandler extends SQLiteOpenHelper {
         String result = "";
 
         Cursor cursor = db.rawQuery("SELECT * FROM ADDRESSBOOK", null);
+
         while (cursor.moveToNext()) {
             result+=cursor.getString(1)+":";
+            Log.e("Cursor", "getName: "+result);
         }
 
         db.close();

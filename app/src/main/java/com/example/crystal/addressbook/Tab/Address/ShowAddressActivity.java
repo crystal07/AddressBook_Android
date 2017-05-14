@@ -50,7 +50,7 @@ public class ShowAddressActivity extends AppCompatActivity {
                 break;
             }
             case R.id.btnDelete : {
-                AddressDBHandler addressDB = new AddressDBHandler(getApplicationContext(), "ADDRESSBOOK.db", null, 1);
+                AddressDBHandler addressDB = AddressDBHandler.getInstance(getApplicationContext());
                 addressDB.DELETE(tvPhone.getText().toString());
                 Toast.makeText(getApplicationContext(), "Complete deleting node", Toast.LENGTH_SHORT);
             }

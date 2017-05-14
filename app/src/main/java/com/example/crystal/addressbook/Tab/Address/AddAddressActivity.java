@@ -59,7 +59,7 @@ public class AddAddressActivity extends AppCompatActivity {
                     if (organization.length()<=0) organization = "null";
                     if (email.length()<=0) email = "null";
                     if (memo.length()<=0) memo = "null";
-                    AddressDBHandler addressDB = new AddressDBHandler(getApplicationContext(), "CALLLIST.db", null, 1);
+                    AddressDBHandler addressDB = AddressDBHandler.getInstance(getApplicationContext());
                     addressDB.INSERT(name, phone, organization, email, memo);
                 }
             }
