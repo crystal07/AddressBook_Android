@@ -26,7 +26,7 @@ public class AddressActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.e("SJ", "onResume: ");
+
         ListView listview ;
         ListViewAdaptor adapter;
         items = new ArrayList<ListViewItem>() ;
@@ -55,21 +55,16 @@ public class AddressActivity extends AppCompatActivity {
 
         if (list == null) list = new ArrayList<ListViewItem>();
 
-        item = new ListViewItem();
-
         //cursor 통하여 DB 추출
         AddressDBHandler addressDB = AddressDBHandler.getInstance(getApplicationContext());
         String NAMES=addressDB.getName();
         String[] NAME = NAMES.split(":");
 
-        Log.e("SJ", "getItems: NAMES" + NAMES);
-
-        Log.e("SJ", "getItems: length : "+NAME.length);
-
         for (int i=0; i<NAME.length; i++) {
+            item = new ListViewItem();
             item.setPicture(ContextCompat.getDrawable(this, R.drawable.icon));
             item.setName(NAME[i]);
-            Log.e("SJ", "getItems: name : "+NAME[i]);
+            list.add(item);
         }
     }
 }

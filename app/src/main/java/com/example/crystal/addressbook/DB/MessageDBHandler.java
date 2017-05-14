@@ -11,8 +11,30 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class MessageDBHandler extends SQLiteOpenHelper {
 
-    public MessageDBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    private static MessageDBHandler instance;
+    private static SQLiteDatabase db;
+
+    private MessageDBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
+    }
+
+    private static void initialize(Context context) {
+        if (instance==null) {
+            instance = new MessageDBHandler(context, "MESSAGE.db", null, 1);
+            db = instance.getWritableDatabase();
+        }
+    }
+
+    public static final MessageDBHandler getInstance(Context context) {
+        initialize(context);
+        return instance;
+    }
+
+    public void close() {
+        if (instance != null) {
+            db.close();
+            instance = null;
+        }
     }
 
     @Override

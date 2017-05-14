@@ -33,8 +33,10 @@ public class ShowAddressActivity extends AppCompatActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnCall : {
-                CallListDBHandler callDB = new CallListDBHandler(getApplicationContext(), "CALLLIST.db", null, 1);
+                CallListDBHandler callDB = CallListDBHandler.getInstance(getApplicationContext());
                 callDB.INSERT(0, tvPhone.getText().toString());
+
+                //intent
                 break;
             }
             case R.id.btnMessage : {

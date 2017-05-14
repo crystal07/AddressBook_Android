@@ -77,12 +77,13 @@ public class KeypadActivity extends AppCompatActivity {
                 break;
             }
             case R.id.btnCall : {
-                CallListDBHandler callDB = new CallListDBHandler(getApplicationContext(), "CALLLIST.db", null, 1);
+                CallListDBHandler callDB = CallListDBHandler.getInstance(getApplicationContext());
                 callDB.INSERT(1, Phone);
 
                 //intent
 
                 Phone="";
+                break;
             }
         }
         tvPhone.setText(Phone);

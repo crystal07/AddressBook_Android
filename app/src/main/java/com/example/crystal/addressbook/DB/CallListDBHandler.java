@@ -11,8 +11,30 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class CallListDBHandler extends SQLiteOpenHelper{
 
-    public CallListDBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    private static CallListDBHandler instance;
+    private static SQLiteDatabase db;
+
+    private CallListDBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
+    }
+
+    private static void initialize(Context context) {
+        if (instance==null) {
+            instance = new CallListDBHandler(context, "CALLLIST.db", null, 1);
+            db = instance.getWritableDatabase();
+        }
+    }
+
+    public static final CallListDBHandler getInstance(Context context) {
+        initialize(context);
+        return instance;
+    }
+
+    public void close() {
+        if (instance != null) {
+            db.close();
+            instance = null;
+        }
     }
 
     @Override
