@@ -47,11 +47,11 @@ public class AddAddressActivity extends AppCompatActivity {
 
 
                 if (name.length()<=0)  {
-                    Toast.makeText(getApplicationContext(), "input name", Toast.LENGTH_SHORT);
+                    Toast.makeText(getApplicationContext(), "input name", Toast.LENGTH_SHORT).show();
                     break;
                 }
                 else if (phone.length()<=0) {
-                    Toast.makeText(getApplicationContext(), "input phone number", Toast.LENGTH_SHORT);
+                    Toast.makeText(getApplicationContext(), "input phone number", Toast.LENGTH_SHORT).show();
                     break;
                 }
 

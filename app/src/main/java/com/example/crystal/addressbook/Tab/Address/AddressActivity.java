@@ -1,13 +1,17 @@
 package com.example.crystal.addressbook.Tab.Address;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.crystal.addressbook.DB.AddressDBHandler;
 import com.example.crystal.addressbook.R;
@@ -37,7 +41,20 @@ public class AddressActivity extends AppCompatActivity {
 
         listview = (ListView) findViewById(R.id.lvAddress);
         listview.setAdapter(adapter);
+        listview.setOnItemClickListener(itemClickListener);
     }
+
+    public AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
+
+        @Override
+        public void onItemClick(AdapterView<?> parent, View v, int position, long l_position) {
+            Log.e("SJ", "onItemClick: "+"Listen");
+            TextView tvName = (TextView) v.findViewById(R.id.tvName);
+            Intent intent = new Intent(AddressActivity.this, ShowAddressActivity.class);
+            intent.putExtra("Name", tvName.getText().toString());
+            startActivity(intent);
+        }
+    };
 
     public void onClick(View v) {
         Intent intent;
@@ -55,7 +72,6 @@ public class AddressActivity extends AppCompatActivity {
 
         if (list == null) list = new ArrayList<ListViewItem>();
 
-        //cursor 통하여 DB 추출
         AddressDBHandler addressDB = AddressDBHandler.getInstance(getApplicationContext());
         String NAMES=addressDB.getName();
         String[] NAME = NAMES.split(":");

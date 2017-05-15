@@ -27,4 +27,5 @@
         <activity android:name=".Tab.Message.SendMessageActivity"></activity>
     </application>
 
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 </manifest>

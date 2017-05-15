@@ -66,12 +66,23 @@ public class AddressDBHandler extends SQLiteOpenHelper {
 
         Cursor cursor = db.rawQuery("SELECT * FROM ADDRESSBOOK", null);
 
+        cursor.moveToFirst();
         while (cursor.moveToNext()) {
             result+=cursor.getString(1)+":";
             Log.e("Cursor", "getName: "+result);
         }
 
         db.close();
+        return result;
+    }
+
+    public String getInfo(String name) {
+        SQLiteDatabase db = getReadableDatabase();
+        String result = "";
+
+        Cursor cursor = db.rawQuery("SELECT * FROM ADDRESSBOOK WHERE NAME = '" + name + "'", null);
+        cursor.moveToFirst();
+        result += cursor.getString(0) + ":" + cursor.getString(1) + ":" + cursor.getString(2) + ":" + cursor.getString(3) + ":" + cursor.getString(4) + ":" + cursor.getString(5);
         return result;
     }
 /*
