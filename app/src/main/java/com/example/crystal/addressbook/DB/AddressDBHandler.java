@@ -50,7 +50,6 @@ public class AddressDBHandler extends SQLiteOpenHelper {
     public void INSERT(String name, String phone, String organization, String email, String memo) {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("INSERT INTO ADDRESSBOOK VALUES (null, '" + name + "', '" + phone + "', '" + organization + "', '" + email + "', '" + memo + "');");
-        Log.e("SJ", "INSERT: name : "+name);
         db.close();
     }
 
@@ -64,12 +63,11 @@ public class AddressDBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         String result = "";
 
-        Cursor cursor = db.rawQuery("SELECT * FROM ADDRESSBOOK", null);
+        Cursor cursor = db.rawQuery("SELECT * from ADDRESSBOOK ORDER BY NAME ASC", null);
 
         cursor.moveToFirst();
         while (cursor.moveToNext()) {
             result+=cursor.getString(1)+":";
-            Log.e("Cursor", "getName: "+result);
         }
 
         db.close();
@@ -82,7 +80,7 @@ public class AddressDBHandler extends SQLiteOpenHelper {
 
         Cursor cursor = db.rawQuery("SELECT * FROM ADDRESSBOOK WHERE NAME = '" + name + "'", null);
         cursor.moveToFirst();
-        result += cursor.getString(0) + ":" + cursor.getString(1) + ":" + cursor.getString(2) + ":" + cursor.getString(3) + ":" + cursor.getString(4) + ":" + cursor.getString(5);
+        if (cursor.getCount() > 0) result += cursor.getString(0) + ":" + cursor.getString(1) + ":" + cursor.getString(2) + ":" + cursor.getString(3) + ":" + cursor.getString(4) + ":" + cursor.getString(5);
         return result;
     }
 /*

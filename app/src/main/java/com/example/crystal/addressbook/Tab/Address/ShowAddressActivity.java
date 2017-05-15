@@ -56,7 +56,6 @@ public class ShowAddressActivity extends AppCompatActivity {
                 CallListDBHandler callDB = CallListDBHandler.getInstance(getApplicationContext());
                 callDB.INSERT(0, tvPhone.getText().toString());
 
-
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     int permissionResult = checkSelfPermission(android.Manifest.permission.CALL_PHONE);
                     if (permissionResult == PackageManager.PERMISSION_DENIED) {

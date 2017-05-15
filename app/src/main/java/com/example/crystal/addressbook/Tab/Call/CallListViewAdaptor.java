@@ -59,6 +59,7 @@ public class CallListViewAdaptor extends ArrayAdapter implements View.OnClickLis
         Button btnCall = (Button) convertView.findViewById(R.id.btnCall);
         btnCall.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
 
             }
         });

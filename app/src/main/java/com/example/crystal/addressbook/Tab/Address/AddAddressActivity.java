@@ -23,7 +23,7 @@ public class AddAddressActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_address);
 
         Intent intent = getIntent();
-        String number = intent.getStringExtra("Phone");
+        String name = intent.getStringExtra("Name");
 
         etName = (EditText) findViewById(R.id.etName);
         etPhone = (EditText) findViewById(R.id.etPhone);
@@ -31,8 +31,16 @@ public class AddAddressActivity extends AppCompatActivity {
         etEmail = (EditText) findViewById(R.id.etEmail);
         etMemo = (EditText) findViewById(R.id.etMemo);
 
-        if (number != null) {
-            //DB에서 꺼내오고, 미리 있는 값 설정
+        if (name != null) {
+            AddressDBHandler addressDB = AddressDBHandler.getInstance(getApplicationContext());
+            String result = addressDB.getInfo(name);
+            String[] info = result.split(":");
+
+            etName.setText(info[1]);
+            etPhone.setText(info[2]);
+            etOrganization.setText(info[3]);
+            etEmail.setText(info[4]);
+            etMemo.setText(info[5]);
         }
     }
 
@@ -45,6 +53,9 @@ public class AddAddressActivity extends AppCompatActivity {
                 email = etEmail.getText().toString();
                 memo = etMemo.getText().toString();
 
+                AddressDBHandler addressDB = AddressDBHandler.getInstance(getApplicationContext());
+                String tmp = addressDB.getInfo(name);
+                if (tmp != null) addressDB.DELETE(name);
 
                 if (name.length()<=0)  {
                     Toast.makeText(getApplicationContext(), "input name", Toast.LENGTH_SHORT).show();
@@ -59,7 +70,6 @@ public class AddAddressActivity extends AppCompatActivity {
                     if (organization.length()<=0) organization = "null";
                     if (email.length()<=0) email = "null";
                     if (memo.length()<=0) memo = "null";
-                    AddressDBHandler addressDB = AddressDBHandler.getInstance(getApplicationContext());
                     addressDB.INSERT(name, phone, organization, email, memo);
                 }
             }
