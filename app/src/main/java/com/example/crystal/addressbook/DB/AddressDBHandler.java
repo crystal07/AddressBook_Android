@@ -97,8 +97,22 @@ public class AddressDBHandler extends SQLiteOpenHelper {
         else name = null;
 
         db.close();
-        if (name != null) Log.e("ADDDB", "findName: "+name);
         return name;
+    }
+
+    public String findPhone(String name) {
+        SQLiteDatabase db = getReadableDatabase();
+        String phone = "";
+
+        Cursor cursor = db.rawQuery("SELECT * FROM ADDRESSBOOK WHERE NAME = '" + name + "'", null);
+        cursor.moveToFirst();
+
+        if (cursor.getCount()>0) phone = cursor.getString(2);
+        else phone = null;
+
+        db.close();
+        Log.e("MessageDB", "findPhone: "+phone);
+        return phone;
     }
 
     public boolean checkExist(String name) {

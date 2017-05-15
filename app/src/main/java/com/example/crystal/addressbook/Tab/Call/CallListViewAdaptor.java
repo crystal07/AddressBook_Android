@@ -65,9 +65,7 @@ public class CallListViewAdaptor extends ArrayAdapter implements View.OnClickLis
 
             }
         });
-
-        Log.e("CALLADAPTOR", "getView: "+tvPhone.getText().toString());
-
+        
         return convertView;
     }
 

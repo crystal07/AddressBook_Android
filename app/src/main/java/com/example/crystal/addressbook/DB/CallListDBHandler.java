@@ -63,11 +63,25 @@ public class CallListDBHandler extends SQLiteOpenHelper{
         SQLiteDatabase db = getReadableDatabase();
         String result = "";
 
-        Cursor cursor = db.rawQuery("SELECT * FROM CALLLIST", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM CALLLIST order by _id desc", null);
 
         while (cursor.moveToNext()) {
             result += cursor.getString(2) + ":";
             Log.e("CALLDB", "getPhone: "+result);
+        }
+
+        db.close();
+        return result;
+    }
+
+    public String getLog(String phone) {
+        SQLiteDatabase db = getReadableDatabase();
+        String result = "";
+
+        Cursor cursor = db.rawQuery("SELECT * FROM CALLLIST WHERE PHONE = '" + phone + "'", null);
+
+        while (cursor.moveToNext()) {
+            result += cursor.getString(0) + ":" + cursor.getString(1) + ":" + cursor.getString(2) + "\n";
         }
 
         db.close();

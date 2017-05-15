@@ -1,6 +1,7 @@
 package com.example.crystal.addressbook.Tab.Message;
 
 import android.content.Context;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,8 +26,6 @@ public class MessageListViewAdaptor extends ArrayAdapter {
         this.resourceId = resource;
     }
 
-
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         final int pos = position;
@@ -41,7 +40,7 @@ public class MessageListViewAdaptor extends ArrayAdapter {
         TextView tvName = (TextView) convertView.findViewById(R.id.tvName) ;
         TextView tvContent = (TextView) convertView.findViewById(R.id.tvContent);
 
-        ListViewItem listViewItem = (ListViewItem) getItem(position);
+        MessageListItem listViewItem = (MessageListItem) getItem(position);
 
         ivPicture.setImageDrawable(listViewItem.getPicture());
         tvName.setText(listViewItem.getName());
