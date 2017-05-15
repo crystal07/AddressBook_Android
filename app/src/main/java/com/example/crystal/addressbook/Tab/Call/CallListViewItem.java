@@ -14,15 +14,15 @@ public class CallListViewItem {
         this.receive = picture;
     }
 
-    public void setName(String name) {
-        this.phone = name;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public Drawable getPicture() {
         return receive;
     }
 
-    public String getName() {
+    public String getPhone() {
         return phone;
     }
 }

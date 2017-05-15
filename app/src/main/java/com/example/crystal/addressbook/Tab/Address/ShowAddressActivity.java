@@ -9,6 +9,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,6 +56,7 @@ public class ShowAddressActivity extends AppCompatActivity {
             case R.id.btnCall : {
                 CallListDBHandler callDB = CallListDBHandler.getInstance(getApplicationContext());
                 callDB.INSERT(0, tvPhone.getText().toString());
+                Log.e("SAA", "onClick: "+tvPhone.getText().toString());
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     int permissionResult = checkSelfPermission(android.Manifest.permission.CALL_PHONE);

@@ -50,6 +50,7 @@ public class AddressDBHandler extends SQLiteOpenHelper {
     public void INSERT(String name, String phone, String organization, String email, String memo) {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("INSERT INTO ADDRESSBOOK VALUES (null, '" + name + "', '" + phone + "', '" + organization + "', '" + email + "', '" + memo + "');");
+        Log.e("ADDRESSBDB", "INSERT: ");
         db.close();
     }
 
@@ -65,7 +66,6 @@ public class AddressDBHandler extends SQLiteOpenHelper {
 
         Cursor cursor = db.rawQuery("SELECT * from ADDRESSBOOK ORDER BY NAME ASC", null);
 
-        cursor.moveToFirst();
         while (cursor.moveToNext()) {
             result+=cursor.getString(1)+":";
         }
@@ -81,7 +81,33 @@ public class AddressDBHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM ADDRESSBOOK WHERE NAME = '" + name + "'", null);
         cursor.moveToFirst();
         if (cursor.getCount() > 0) result += cursor.getString(0) + ":" + cursor.getString(1) + ":" + cursor.getString(2) + ":" + cursor.getString(3) + ":" + cursor.getString(4) + ":" + cursor.getString(5);
+
+        db.close();
         return result;
+    }
+
+    public String findName(String phone) {
+        SQLiteDatabase db = getReadableDatabase();
+        String name = "";
+
+        Cursor cursor = db.rawQuery("SELECT * FROM ADDRESSBOOK WHERE PHONE = '" + phone + "'", null);
+        cursor.moveToFirst();
+
+        if (cursor.getCount()>0) name = cursor.getString(1);
+        else name = null;
+
+        db.close();
+        if (name != null) Log.e("ADDDB", "findName: "+name);
+        return name;
+    }
+
+    public boolean checkExist(String name) {
+        SQLiteDatabase db = getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM ADDRESSBOOK WHERE NAME = '" + name + "'", null);
+
+        if (cursor.getCount()>0) return true;
+        else return false;
     }
 /*
     public String getResult() {
