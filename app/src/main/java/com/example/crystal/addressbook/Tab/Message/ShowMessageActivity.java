@@ -81,9 +81,6 @@ public class ShowMessageActivity extends AppCompatActivity {
             }
             item.setContent(LOGS[i+2]);
 
-
-
-            Log.e(TAG, "getItems: name : " + item.getName() + ", content : " + item.getContent());
             adaptor.add(item);
         }
 
