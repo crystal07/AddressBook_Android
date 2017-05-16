@@ -9,15 +9,10 @@ import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.example.crystal.addressbook.DB.AddressDBHandler;
-import com.example.crystal.addressbook.DB.CallListDBHandler;
 import com.example.crystal.addressbook.DB.MessageDBHandler;
 import com.example.crystal.addressbook.R;
-import com.example.crystal.addressbook.Tab.Address.ListViewAdaptor;
-import com.example.crystal.addressbook.Tab.Address.ListViewItem;
-import com.example.crystal.addressbook.Tab.Call.CallListViewItem;
 
 import java.util.ArrayList;
 
@@ -38,7 +33,6 @@ public class MessageActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
 
         items = new ArrayList<MessageListItem>() ;
         ListView listview ;
@@ -78,10 +72,9 @@ public class MessageActivity extends AppCompatActivity {
             item = new MessageListItem();
             item.setId(Integer.parseInt(Phone[i]));
             item.setPicture(ContextCompat.getDrawable(this, R.drawable.icon));
-            if (addressDB.findName(Phone[i+1]) == null) item.setName(Phone[i]);
-            else item.setName(addressDB.findName(Phone[i+1]));
+            item.setName(Phone[i+1]);
             item.setContent(Phone[i+2]);
-            Log.e("MESSAGEACT", "getItems: "+Phone[i]+":"+Phone[i+1]+":"+Phone[i+2]);
+
             adaptor.add(item);
         }
 
@@ -107,10 +100,9 @@ public class MessageActivity extends AppCompatActivity {
                         items.remove(i) ;
                     } }
 
-                if (items.size() > 0) items.clear();
+                listView.clearChoices() ;
                 adaptor.notifyDataSetChanged();
 
-                listView.clearChoices() ;
                 break;
             }
             case R.id.btnSelectAll : {

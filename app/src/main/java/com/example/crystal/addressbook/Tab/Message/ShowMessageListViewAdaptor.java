@@ -16,11 +16,11 @@ import java.util.ArrayList;
  * Created by crystal on 2017. 5. 15..
  */
 
-public class MessageListViewAdaptor extends ArrayAdapter {
+public class ShowMessageListViewAdaptor extends ArrayAdapter {
 
     int resourceId;
 
-    MessageListViewAdaptor(Context context, int resource, ArrayList<MessageListItem> list) {
+    ShowMessageListViewAdaptor(Context context, int resource, ArrayList<ShowMessageListItem> list) {
         super(context, resource, list);
         this.resourceId = resource;
     }
@@ -32,14 +32,14 @@ public class MessageListViewAdaptor extends ArrayAdapter {
 
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.listview_message, parent, false);
+            convertView = inflater.inflate(R.layout.listview_show_message, parent, false);
         }
 
         ImageView ivPicture = (ImageView) convertView.findViewById(R.id.ivPicture) ;
         TextView tvName = (TextView) convertView.findViewById(R.id.tvName) ;
         TextView tvContent = (TextView) convertView.findViewById(R.id.tvContent);
 
-        MessageListItem listViewItem = (MessageListItem) getItem(position);
+        ShowMessageListItem listViewItem = (ShowMessageListItem) getItem(position);
 
         ivPicture.setImageDrawable(listViewItem.getPicture());
         tvName.setText(listViewItem.getName());
@@ -48,3 +48,4 @@ public class MessageListViewAdaptor extends ArrayAdapter {
         return convertView;
     }
 }
+

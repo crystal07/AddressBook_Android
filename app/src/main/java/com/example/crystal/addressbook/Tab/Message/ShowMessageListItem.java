@@ -3,10 +3,10 @@ package com.example.crystal.addressbook.Tab.Message;
 import android.graphics.drawable.Drawable;
 
 /**
- * Created by crystal on 2017. 5. 17..
+ * Created by crystal on 2017. 5. 15..
  */
 
-public class MessageListItem {
+public class ShowMessageListItem {
     private Drawable picture;
     private String name;
     private String content;
@@ -34,5 +34,4 @@ public class MessageListItem {
 
     public int getId() {return id;}
 }
-
 

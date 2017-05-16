@@ -23,7 +23,7 @@
                 android:layout_centerVertical="true"
                 android:adjustViewBounds="false"
                 android:onClick="onClick"
-                app:srcCompat="@mipmap/ic_launcher_round" />
+                app:srcCompat="@drawable/address_book" />
 
         </RelativeLayout>
 

@@ -22,9 +22,9 @@ public class ShowMessageActivity extends AppCompatActivity {
     EditText etMessage;
     String receiver, message;
     TextView tvReceiver;
-    private ArrayList<MessageListItem> items;
-    public MessageListItem item;
-    public MessageListViewAdaptor adaptor;
+    private ArrayList<ShowMessageListItem> items;
+    private ShowMessageListItem item;
+    private ShowMessageListViewAdaptor adaptor;
     AddressDBHandler addressDB;
     MessageDBHandler messageDB;
     ListView listView;
@@ -47,10 +47,10 @@ public class ShowMessageActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        items = new ArrayList<MessageListItem>() ;
+        items = new ArrayList<ShowMessageListItem>() ;
         ListView listview ;
-        adaptor = new MessageListViewAdaptor(getApplicationContext(), R.layout.listview_message, items);
-        item = new MessageListItem();
+        adaptor = new ShowMessageListViewAdaptor(getApplicationContext(), R.layout.listview_show_message, items);
+        item = new ShowMessageListItem();
 
         getItems(items);
 
@@ -58,9 +58,9 @@ public class ShowMessageActivity extends AppCompatActivity {
         listview.setAdapter(adaptor);
     }
 
-    public void getItems(ArrayList<MessageListItem> list) {
+    public void getItems(ArrayList<ShowMessageListItem> list) {
 
-        if (list == null) list = new ArrayList<MessageListItem>();
+        if (list == null) list = new ArrayList<ShowMessageListItem>();
 
         //cursor 통하여 DB 추출
         messageDB = MessageDBHandler.getInstance(getApplicationContext());
@@ -71,9 +71,9 @@ public class ShowMessageActivity extends AppCompatActivity {
 
         for (int i=0; (LOG.length() > 0) && (i<LOGS.length); i+=4) {
 
-            item = new MessageListItem();
+            item = new ShowMessageListItem();
             item.setId(Integer.parseInt(LOGS[i]));
-            if (LOGS[i].equals(receiver)) {
+            if (LOGS[i+1].equals(receiver)) {
                 item.setName(LOGS[i+2]);
                 item.setPicture(ContextCompat.getDrawable(this, R.drawable.icon));
             }
@@ -99,7 +99,6 @@ public class ShowMessageActivity extends AppCompatActivity {
                     break;
                 }
 
-                Log.e(TAG, "onClick: "+receiver );
                 messageDB.INSERT(receiver, "me", message);
                 etMessage.setText("");
 
@@ -123,10 +122,9 @@ public class ShowMessageActivity extends AppCompatActivity {
                         items.remove(i) ;
                     } }
 
-                if (items.size() > 0) items.clear();
+                listView.clearChoices() ;
                 adaptor.notifyDataSetChanged();
 
-                listView.clearChoices() ;
                 break;
             }
             case R.id.btnSelectAll : {
