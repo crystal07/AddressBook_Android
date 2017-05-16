@@ -43,7 +43,6 @@ public class AddAddressActivity extends AppCompatActivity {
             etMemo.setText(info[5]);
         }
 
-        addressDB.INSERT("me", "00000000000", "null", "null", "null");
     }
 
     public void onClick(View v) {
@@ -76,7 +75,6 @@ public class AddAddressActivity extends AppCompatActivity {
                 }
             }
             case R.id.btnCancel : {
-                Log.e("SJ", "onClick: before finishing activity");
                 finish();
                 break;
             }

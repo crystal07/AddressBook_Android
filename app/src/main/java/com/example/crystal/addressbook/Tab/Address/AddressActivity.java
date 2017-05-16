@@ -94,7 +94,6 @@ public class AddressActivity extends AppCompatActivity {
         AddressDBHandler addressDB = AddressDBHandler.getInstance(getApplicationContext());
         String NAMES=addressDB.getName();
         String[] NAME = NAMES.split(":");
-        Log.e("addressAct", "getItems: "+NAMES);
 
         for (int i=0; (NAMES.length()>0) && (i<NAME.length); i++) {
             adaptor.addItem(ContextCompat.getDrawable(this, R.drawable.icon), NAME[i]);

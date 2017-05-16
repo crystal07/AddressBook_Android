@@ -59,6 +59,18 @@ public class CallListDBHandler extends SQLiteOpenHelper{
         db.close();
     }
 
+    public void DELETE_ALL() {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DELETE FROM CALLLIST");
+        db.close();
+    }
+
+    public void DELETE_BY_ID(int id) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DELETE FROM CALLLIST WHERE _id = " + id);
+        db.close();
+    }
+
     public String getPhone() {
         SQLiteDatabase db = getReadableDatabase();
         String result = "";
@@ -66,7 +78,7 @@ public class CallListDBHandler extends SQLiteOpenHelper{
         Cursor cursor = db.rawQuery("SELECT * FROM CALLLIST order by _id desc", null);
 
         while (cursor.moveToNext()) {
-            result += cursor.getString(2) + ":";
+            result += cursor.getString(0) + ":" + cursor.getString(2) + ":";
         }
 
         db.close();

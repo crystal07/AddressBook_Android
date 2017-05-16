@@ -10,6 +10,7 @@ public class MessageListItem {
     private Drawable picture;
     private String name;
     private String content;
+    private int id;
 
     public void setPicture(Drawable picture) {
         this.picture = picture;
@@ -21,6 +22,8 @@ public class MessageListItem {
 
     public void setContent(String content) {this.content = content;}
 
+    public void setId(int id) {this.id = id;}
+
     public Drawable getPicture() {
         return picture;
     }
@@ -28,4 +31,6 @@ public class MessageListItem {
     public String getName() {return name;}
 
     public String getContent() {return content;}
+
+    public int getId() {return id;}
 }

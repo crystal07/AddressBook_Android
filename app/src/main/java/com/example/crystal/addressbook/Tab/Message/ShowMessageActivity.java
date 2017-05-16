@@ -5,6 +5,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -26,6 +27,7 @@ public class ShowMessageActivity extends AppCompatActivity {
     public MessageListViewAdaptor adaptor;
     AddressDBHandler addressDB;
     MessageDBHandler messageDB;
+    ListView listView;
     private final String TAG = "SHOWMESSAGE";
 
     @Override
@@ -67,19 +69,19 @@ public class ShowMessageActivity extends AppCompatActivity {
         String LOG=messageDB.getLog(receiver);
         String[] LOGS = LOG.split(":");
 
-        for (int i=0; (LOG.length() > 0) && (i<LOGS.length); i+=3) {
+        for (int i=0; (LOG.length() > 0) && (i<LOGS.length); i+=4) {
 
             item = new MessageListItem();
-
+            item.setId(Integer.parseInt(LOGS[i]));
             if (LOGS[i].equals(receiver)) {
-                item.setName(LOGS[i+1]);
+                item.setName(LOGS[i+2]);
                 item.setPicture(ContextCompat.getDrawable(this, R.drawable.icon));
             }
             else {
-                item.setName(LOGS[i]);
+                item.setName(LOGS[i+1]);
                 item.setPicture(ContextCompat.getDrawable(this, R.drawable.receive));
             }
-            item.setContent(LOGS[i+2]);
+            item.setContent(LOGS[i+3]);
 
             adaptor.add(item);
         }
@@ -109,14 +111,31 @@ public class ShowMessageActivity extends AppCompatActivity {
                 break;
             }
             case R.id.btnDelete : {
-                if (!messageDB.checkExist(receiver)) {
-                    AddressDBHandler addressDB = AddressDBHandler.getInstance(getApplicationContext());
-                    messageDB.DELETE(addressDB.findPhone(receiver));
-                }
-                else messageDB.DELETE(receiver);
-                Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_SHORT).show();
-                finish();
+                listView = (ListView) findViewById(R.id.lvShowMessage);
+                messageDB = MessageDBHandler.getInstance(getApplicationContext());
+
+                SparseBooleanArray checkedItems = listView.getCheckedItemPositions();
+
+                int count = adaptor.getCount() ;
+                for (int i = count-1; i >= 0; i--) {
+                    if (checkedItems.get(i)) {
+                        messageDB.DELETE_BY_ID(items.get(i).getId());
+                        items.remove(i) ;
+                    } }
+
+                if (items.size() > 0) items.clear();
+                adaptor.notifyDataSetChanged();
+
+                listView.clearChoices() ;
                 break;
+            }
+            case R.id.btnSelectAll : {
+                int count = 0 ;
+                count = adaptor.getCount() ;
+
+                for (int i=0; i<count; i++) {
+                    listView.setItemChecked(i, true) ;
+                }
             }
         }
     }

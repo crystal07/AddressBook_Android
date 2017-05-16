@@ -5,6 +5,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -26,6 +27,7 @@ public class MessageActivity extends AppCompatActivity {
     public MessageListViewAdaptor adaptor;
     AddressDBHandler addressDB;
     MessageDBHandler messageDB;
+    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,20 +67,21 @@ public class MessageActivity extends AppCompatActivity {
         if (list == null) list = new ArrayList<MessageListItem>();
 
         //cursor 통하여 DB 추출
-        messageDB = MessageDBHandler.getInstance(getApplicationContext());
         addressDB = AddressDBHandler.getInstance(getApplicationContext());
+        messageDB = MessageDBHandler.getInstance(getApplicationContext());
 
         String PHONES=messageDB.getPhone();
         String[] Phone = PHONES.split(":");
 
-        for (int i=0; (PHONES.length() > 0) && (i<Phone.length); i+=2) {
+        for (int i=0; (PHONES.length() > 0) && (i<Phone.length); i+=3) {
 
             item = new MessageListItem();
-
+            item.setId(Integer.parseInt(Phone[i]));
             item.setPicture(ContextCompat.getDrawable(this, R.drawable.icon));
-            if (addressDB.findName(Phone[i]) == null) item.setName(Phone[i]);
-            else item.setName(addressDB.findName(Phone[i]));
-            item.setContent(Phone[i+1]);
+            if (addressDB.findName(Phone[i+1]) == null) item.setName(Phone[i]);
+            else item.setName(addressDB.findName(Phone[i+1]));
+            item.setContent(Phone[i+2]);
+            Log.e("MESSAGEACT", "getItems: "+Phone[i]+":"+Phone[i+1]+":"+Phone[i+2]);
             adaptor.add(item);
         }
 
@@ -89,6 +92,34 @@ public class MessageActivity extends AppCompatActivity {
             case R.id.btnSendMessage : {
                 Intent intent = new Intent(MessageActivity.this, SendMessageActivity.class);
                 startActivity(intent);
+                break;
+            }
+            case R.id.btnDelete : {
+                listView = (ListView) findViewById(R.id.lvMessage);
+                messageDB = MessageDBHandler.getInstance(getApplicationContext());
+
+                SparseBooleanArray checkedItems = listView.getCheckedItemPositions();
+
+                int count = adaptor.getCount() ;
+                for (int i = count-1; i >= 0; i--) {
+                    if (checkedItems.get(i)) {
+                        messageDB.DELETE_BY_ID(items.get(i).getId());
+                        items.remove(i) ;
+                    } }
+
+                if (items.size() > 0) items.clear();
+                adaptor.notifyDataSetChanged();
+
+                listView.clearChoices() ;
+                break;
+            }
+            case R.id.btnSelectAll : {
+                int count = 0 ;
+                count = adaptor.getCount() ;
+
+                for (int i=0; i<count; i++) {
+                    listView.setItemChecked(i, true) ;
+                }
             }
         }
     }

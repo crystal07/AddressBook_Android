@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -53,19 +55,12 @@ public class CallListViewAdaptor extends ArrayAdapter implements View.OnClickLis
         ImageView ivReceive = (ImageView) convertView.findViewById(R.id.ivReceive) ;
         final TextView tvPhone = (TextView) convertView.findViewById(R.id.tvPhone) ;
 
-        CallListViewItem listViewItem = (CallListViewItem) getItem(position);
+        final CallListViewItem listViewItem = (CallListViewItem) getItem(position);
 
         ivReceive.setImageDrawable(listViewItem.getPicture());
         tvPhone.setText(listViewItem.getPhone());
 
-        ImageButton btnCall = (ImageButton) convertView.findViewById(R.id.btnCall);
-        btnCall.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW);
 
-            }
-        });
-        
         return convertView;
     }
 

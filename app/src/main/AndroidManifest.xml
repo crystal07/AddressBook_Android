@@ -26,7 +26,7 @@
         <activity android:name=".Tab.Address.ShowAddressActivity" />
         <activity android:name=".Tab.Address.AddAddressActivity" />
         <activity android:name=".Tab.Message.ShowMessageActivity" />
-        <activity android:name=".Tab.Message.SendMessageActivity" />
+        <activity android:name="com.example.crystal.addressbook.Tab.Message.SendMessageActivity" />
     </application>
 
 </manifest>

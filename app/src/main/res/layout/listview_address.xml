@@ -10,7 +10,7 @@
         android:id="@+id/ivPicture"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_weight="1"
+        android:layout_weight="0.66"
         android:focusable="false"
         app:srcCompat="@mipmap/ic_launcher" />
 
@@ -21,12 +21,5 @@
         android:focusable="false"
         android:layout_weight="1" />
 
-    <ImageButton
-        android:id="@+id/btnCall"
-        android:layout_width="10dp"
-        android:layout_height="50dp"
-        android:layout_weight="1"
-        android:onClick="onClick"
-        android:focusable="false"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+
 </LinearLayout>

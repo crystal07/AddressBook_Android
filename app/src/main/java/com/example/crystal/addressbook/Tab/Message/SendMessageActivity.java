@@ -1,5 +1,6 @@
 package com.example.crystal.addressbook.Tab.Message;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,8 @@ import com.example.crystal.addressbook.R;
 public class SendMessageActivity extends AppCompatActivity {
     EditText etReceiver, etSender, etContent;
     String receiver, sender, content;
+    Intent intent;
+    String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,11 @@ public class SendMessageActivity extends AppCompatActivity {
         etContent = (EditText) findViewById(R.id.etContent);
         etReceiver = (EditText) findViewById(R.id.etReceiver);
         etSender = (EditText) findViewById(R.id.etSender);
+
+        intent = getIntent();
+        name = intent.getStringExtra("Name");
+
+        if (name != null) etReceiver.setText(name);
     }
 
     public void onClick(View view) {

@@ -1,5 +1,6 @@
 package com.example.crystal.addressbook.Tab.Address;
 
+import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -38,25 +39,32 @@ public class ShowAddressActivity extends AppCompatActivity {
 
         //DB에서 자료 가져와서 설정하기
         Intent intent = getIntent();
-        String name = intent.getExtras().getString("Name");
+        String name = intent.getStringExtra("Name");
+        String phone = intent.getStringExtra("Phone");
 
         AddressDBHandler addressDB = AddressDBHandler.getInstance(getApplicationContext());
         String result = addressDB.getInfo(name);
         String[] info = result.split(":");
-
-        tvName.setText(info[1]);
-        tvPhone.setText(info[2]);
-        tvOrganization.setText(info[3]);
-        tvEmail.setText(info[4]);
-        tvMemo.setText(info[5]);
+        if (name != null) {
+            tvName.setText(info[1]);
+            tvPhone.setText(info[2]);
+            tvOrganization.setText(info[3]);
+            tvEmail.setText(info[4]);
+            tvMemo.setText(info[5]);
+        }
+        else {
+            tvName.setText("unknown");
+            tvPhone.setText(phone);
+            tvOrganization.setText("null");
+            tvEmail.setText("null");
+            tvMemo.setText("null");
+        }
     }
 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnCall : {
                 CallListDBHandler callDB = CallListDBHandler.getInstance(getApplicationContext());
-                callDB.INSERT(0, tvPhone.getText().toString());
-                Log.e("SAA", "onClick: "+tvPhone.getText().toString());
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     int permissionResult = checkSelfPermission(android.Manifest.permission.CALL_PHONE);
@@ -85,21 +93,24 @@ public class ShowAddressActivity extends AppCompatActivity {
                     }
                     else {
                         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+tvPhone.getText().toString()));
+                        callDB.INSERT(0, tvPhone.getText().toString());
                         startActivity(intent);
                     }
                 }
                 else {
                     Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+tvPhone.getText().toString()));
+                    callDB.INSERT(0, tvPhone.getText().toString());
                     startActivity(intent);
                 }
 
                 break;
             }
             case R.id.btnMessage : {
-                Intent intent = new Intent(this, SendMessageActivity.class);
-                intent.putExtra("target", tvPhone.getText().toString());
+                Intent intent = new Intent(this,SendMessageActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("Name", tvPhone.getText().toString());
                 startActivity(intent);
-                finish();
+                break;
             }
             case R.id.btnEdit : {
                 Intent intent = new Intent(this, AddAddressActivity.class);
@@ -109,8 +120,14 @@ public class ShowAddressActivity extends AppCompatActivity {
             }
             case R.id.btnDelete : {
                 AddressDBHandler addressDB = AddressDBHandler.getInstance(getApplicationContext());
-                addressDB.DELETE(tvName.getText().toString());
-                Toast.makeText(getApplicationContext(), "Complete deleting node", Toast.LENGTH_SHORT).show();
+                if (addressDB.checkExist(tvName.getText().toString())) {
+                    addressDB.DELETE(tvName.getText().toString());
+                    if (addressDB.getDataSize() <= 0 ) addressDB.INSERT("me", "00000000000", "HYU", "ssj977@naver.com", "null");
+                    Toast.makeText(getApplicationContext(), "Complete deleting node", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Not saved node", Toast.LENGTH_SHORT).show();
+                }
             }
             case R.id.btnCancel : {
                 finish();

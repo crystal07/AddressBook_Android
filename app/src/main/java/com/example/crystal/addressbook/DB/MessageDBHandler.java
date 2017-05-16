@@ -61,6 +61,12 @@ public class MessageDBHandler extends SQLiteOpenHelper {
         else return false;
     }
 
+    public void DELETE_BY_ID(int id) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DELETE FROM MESSAGE WHERE _id = " + id);
+        db.close();
+    }
+
     public void DELETE(String phone) {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("DELETE FROM MESSAGE WHERE phone= '" + phone + "';");
@@ -74,7 +80,7 @@ public class MessageDBHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM MESSAGE order by _id desc", null);
 
         while (cursor.moveToNext()) {
-            result += cursor.getString(2) + ":" + cursor.getString(3) + ":";
+            result += cursor.getString(0) + ":" + cursor.getString(2) + ":" + cursor.getString(3) + ":";
         }
 
         db.close();
@@ -88,7 +94,7 @@ public class MessageDBHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM MESSAGE WHERE (PHONE = '" + phone + "' OR CALLER =  + " + "'" + phone + "')", null);
 
         while (cursor.moveToNext()) {
-            result += cursor.getString(1) + ":" + cursor.getString(2) + ":" + cursor.getString(3) + ":";
+            result += cursor.getString(0) + ":" + cursor.getString(1) + ":" + cursor.getString(2) + ":" + cursor.getString(3) + ":";
         }
 
         db.close();

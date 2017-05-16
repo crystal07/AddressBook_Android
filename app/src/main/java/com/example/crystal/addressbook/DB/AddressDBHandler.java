@@ -42,6 +42,7 @@ public class AddressDBHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE ADDRESSBOOK (_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, phone TEXT, organization TEXT, email TEXT, memo TEXT);");
+        db.execSQL("INSERT INTO ADDRESSBOOK VALUES (null, 'me', '00000000000', 'HYU', 'ssj977@naver.com', 'null');");
     }
 
     @Override
@@ -120,8 +121,23 @@ public class AddressDBHandler extends SQLiteOpenHelper {
 
         Cursor cursor = db.rawQuery("SELECT * FROM ADDRESSBOOK WHERE NAME = '" + name + "'", null);
 
-        if (cursor.getCount()>0) return true;
-        else return false;
+        boolean check;
+
+        if (cursor.getCount()>0) check = true;
+        else check = false;
+        db.close();
+
+        return check;
+    }
+
+    public int getDataSize () {
+        SQLiteDatabase db = getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT _id FROM ADDRESSBOOK;", null);
+
+        int size = cursor.getCount();
+        db.close();
+        return size;
     }
 /*
     public String getResult() {

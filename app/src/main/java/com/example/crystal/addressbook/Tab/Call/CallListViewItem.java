@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 public class CallListViewItem {
     private Drawable receive;
     private String phone;
+    private int id;
 
     public void setPicture(Drawable picture) {
         this.receive = picture;
@@ -18,6 +19,8 @@ public class CallListViewItem {
         this.phone = phone;
     }
 
+    public void setId(int id) {this.id = id;}
+
     public Drawable getPicture() {
         return receive;
     }
@@ -25,4 +28,6 @@ public class CallListViewItem {
     public String getPhone() {
         return phone;
     }
+
+    public int getId() {return id;}
 }

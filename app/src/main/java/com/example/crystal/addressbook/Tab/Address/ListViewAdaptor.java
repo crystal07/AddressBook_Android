@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageButton;
@@ -78,9 +79,6 @@ public class ListViewAdaptor extends BaseAdapter implements View.OnClickListener
 
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btnCall : {
-
-            }
         }
     }
 

@@ -8,10 +8,12 @@ import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.crystal.addressbook.DB.AddressDBHandler;
 import com.example.crystal.addressbook.DB.CallListDBHandler;
 import com.example.crystal.addressbook.R;
 import com.example.crystal.addressbook.Tab.Address.ShowAddressActivity;
@@ -78,8 +80,18 @@ public class KeypadActivity extends AppCompatActivity {
                 break;
             }
             case R.id.btnMessage : {
+                AddressDBHandler addressDB = AddressDBHandler.getInstance(getApplicationContext());
                 Intent intent = new Intent(this, SendMessageActivity.class);
-                intent.putExtra("Phone", Phone);
+
+                if (addressDB.findName(Phone) != null) {
+                    intent.putExtra("Name", addressDB.findName(Phone));
+                    Log.e(TAG, "onClick: not null");
+                }
+                else {
+                    intent.putExtra("Name", Phone);
+                    Log.e(TAG, "onClick: null");
+                }
+                Phone = "";
                 startActivity(intent);
                 break;
             }
