@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.crystal.addressbook.DB.AddressDBHandler;
 import com.example.crystal.addressbook.DB.MessageDBHandler;
 import com.example.crystal.addressbook.R;
 
@@ -25,11 +26,20 @@ public class SendMessageActivity extends AppCompatActivity {
 
     public void onClick(View view) {
         MessageDBHandler messageDB = MessageDBHandler.getInstance(getApplicationContext());
+        AddressDBHandler addressDB = AddressDBHandler.getInstance(getApplicationContext());
         switch (view.getId()) {
             case R.id.btnSend: {
                 content = etContent.getText().toString();
                 receiver = etReceiver.getText().toString();
                 sender = etSender.getText().toString();
+
+                if ((content.length() <= 0) && (receiver.length() <= 0) && (sender.length() <= 0)) {
+                    Toast.makeText(getApplicationContext(), "input", Toast.LENGTH_SHORT);
+                    break;
+                }
+
+                if (addressDB.findName(receiver) != null) receiver = addressDB.findName(receiver);
+                if (addressDB.findName(sender) != null) sender = addressDB.findName(sender);
 
                 messageDB.INSERT(sender, receiver, content);
                 Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_SHORT).show();

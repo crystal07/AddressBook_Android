@@ -31,8 +31,8 @@ public class AddAddressActivity extends AppCompatActivity {
         etEmail = (EditText) findViewById(R.id.etEmail);
         etMemo = (EditText) findViewById(R.id.etMemo);
 
+        AddressDBHandler addressDB = AddressDBHandler.getInstance(getApplicationContext());
         if (name != null) {
-            AddressDBHandler addressDB = AddressDBHandler.getInstance(getApplicationContext());
             String result = addressDB.getInfo(name);
             String[] info = result.split(":");
 
@@ -42,6 +42,8 @@ public class AddAddressActivity extends AppCompatActivity {
             etEmail.setText(info[4]);
             etMemo.setText(info[5]);
         }
+
+        addressDB.INSERT("me", "00000000000", "null", "null", "null");
     }
 
     public void onClick(View v) {

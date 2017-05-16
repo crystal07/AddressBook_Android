@@ -75,7 +75,6 @@ public class MessageDBHandler extends SQLiteOpenHelper {
 
         while (cursor.moveToNext()) {
             result += cursor.getString(2) + ":" + cursor.getString(3) + ":";
-            Log.e("CALLDB", "getPhone: "+result);
         }
 
         db.close();
@@ -86,10 +85,10 @@ public class MessageDBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         String result = "";
 
-        Cursor cursor = db.rawQuery("SELECT * FROM MESSAGE WHERE PHONE = '" + phone + "'", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM MESSAGE WHERE (PHONE = '" + phone + "' OR CALLER =  + " + "'" + phone + "')", null);
 
         while (cursor.moveToNext()) {
-            result += cursor.getString(1) + ":" + cursor.getString(2) + ":" + cursor.getString(3) + "\n";
+            result += cursor.getString(1) + ":" + cursor.getString(2) + ":" + cursor.getString(3) + ":";
         }
 
         db.close();

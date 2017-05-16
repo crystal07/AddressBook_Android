@@ -67,7 +67,6 @@ public class CallListDBHandler extends SQLiteOpenHelper{
 
         while (cursor.moveToNext()) {
             result += cursor.getString(2) + ":";
-            Log.e("CALLDB", "getPhone: "+result);
         }
 
         db.close();
