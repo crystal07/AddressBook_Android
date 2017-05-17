@@ -27,7 +27,7 @@ public class ShowMessageActivity extends AppCompatActivity {
     private ShowMessageListViewAdaptor adaptor;
     AddressDBHandler addressDB;
     MessageDBHandler messageDB;
-    ListView listView;
+    ListView listview;
     private final String TAG = "SHOWMESSAGE";
 
     @Override
@@ -41,6 +41,9 @@ public class ShowMessageActivity extends AppCompatActivity {
         Intent intent = getIntent();
         receiver = intent.getStringExtra("Name");
         tvReceiver.setText(receiver);
+
+        listview = (ListView) findViewById(R.id.lvShowMessage);
+        listview.setAdapter(adaptor);
     }
 
     @Override
@@ -48,7 +51,6 @@ public class ShowMessageActivity extends AppCompatActivity {
         super.onResume();
 
         items = new ArrayList<ShowMessageListItem>() ;
-        ListView listview ;
         adaptor = new ShowMessageListViewAdaptor(getApplicationContext(), R.layout.listview_show_message, items);
         item = new ShowMessageListItem();
 
@@ -110,10 +112,10 @@ public class ShowMessageActivity extends AppCompatActivity {
                 break;
             }
             case R.id.btnDelete : {
-                listView = (ListView) findViewById(R.id.lvShowMessage);
+                listview = (ListView) findViewById(R.id.lvShowMessage);
                 messageDB = MessageDBHandler.getInstance(getApplicationContext());
 
-                SparseBooleanArray checkedItems = listView.getCheckedItemPositions();
+                SparseBooleanArray checkedItems = listview.getCheckedItemPositions();
 
                 int count = adaptor.getCount() ;
                 for (int i = count-1; i >= 0; i--) {
@@ -122,7 +124,7 @@ public class ShowMessageActivity extends AppCompatActivity {
                         items.remove(i) ;
                     } }
 
-                listView.clearChoices() ;
+                listview.clearChoices() ;
                 adaptor.notifyDataSetChanged();
 
                 break;
@@ -132,8 +134,9 @@ public class ShowMessageActivity extends AppCompatActivity {
                 count = adaptor.getCount() ;
 
                 for (int i=0; i<count; i++) {
-                    listView.setItemChecked(i, true) ;
+                    listview.setItemChecked(i, true) ;
                 }
+                break;
             }
         }
     }

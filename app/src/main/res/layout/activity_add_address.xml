@@ -84,21 +84,48 @@
             android:layout_width="match_parent"
             android:layout_height="50dp" />
 
-        <Button
-            android:id="@+id/btnAdd"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="onClick"
-            android:text="Add"
-            android:textSize="20sp" />
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btnCancel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onClick"
-            android:text="Cancel"
-            android:textSize="20sp" />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:id="@+id/btnAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:onClick="onClick"
+                android:text="Add"
+                android:textSize="20sp"
+                app:srcCompat="@drawable/add_address" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:id="@+id/btnCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:onClick="onClick"
+                android:text="Cancel"
+                android:textSize="20sp"
+                app:srcCompat="@drawable/back" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </RelativeLayout>

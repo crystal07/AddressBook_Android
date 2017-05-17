@@ -24,25 +24,29 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
+            <ImageButton
                 android:id="@+id/btnDelete"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="@android:color/transparent"
                 android:onClick="onClick"
                 android:text="Delete"
                 android:textSize="20sp"
+                app:srcCompat="@android:drawable/ic_menu_delete"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="0dp" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/btnSelectAll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@android:color/transparent"
                 android:onClick="onClick"
                 android:text="Select All"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                app:srcCompat="@drawable/choose" />
         </LinearLayout>
 
     </LinearLayout>

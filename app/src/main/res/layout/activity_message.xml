@@ -17,7 +17,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:layout_width="match_parent"
+                android:layout_width="350dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
@@ -25,13 +25,15 @@
                 android:textAlignment="center"
                 android:textSize="30sp" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/btnSendMessage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
                 android:layout_weight="5"
+                android:background="@android:color/transparent"
                 android:onClick="onClick"
-                android:text="Send" />
+                android:text="Send"
+                app:srcCompat="@android:drawable/ic_menu_send" />
 
         </LinearLayout>
 

@@ -25,23 +25,30 @@
                 android:textAlignment="center"
                 android:textSize="30sp" />
 
-            <Button
-                android:id="@+id/btnDelete"
-                android:layout_width="70dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="onClick"
-                android:text="Del"
-                android:textSize="18sp" />
-
-            <Button
+            <ImageButton
                 android:id="@+id/btnSelectAll"
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_weight="1"
+                android:background="@android:color/transparent"
                 android:onClick="onClick"
-                android:text="All"
-                android:textSize="18sp" />
+                android:text="Select All"
+                android:textSize="20sp"
+                app:srcCompat="@drawable/choose" />
+
+            <ImageButton
+                android:id="@+id/btnDelete"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:onClick="onClick"
+                android:text="Delete"
+                android:textSize="20sp"
+                app:srcCompat="@android:drawable/ic_menu_delete"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="0dp" />
+
         </LinearLayout>
 
         <ListView
@@ -57,19 +64,21 @@
 
             <EditText
                 android:id="@+id/etMessage"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textMultiLine" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/btnSend"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@android:color/transparent"
                 android:onClick="onClick"
-                android:text="Send" />
+                android:text="Send"
+                app:srcCompat="@android:drawable/ic_menu_send" />
         </LinearLayout>
     </LinearLayout>
 
