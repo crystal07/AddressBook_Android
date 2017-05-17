@@ -1,4 +1,4 @@
-package com.example.crystal.addressbook.Tab.Call;
+package com.example.crystal.addressbook.Tab.Keypad;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,18 +10,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.crystal.addressbook.DB.AddressDBHandler;
 import com.example.crystal.addressbook.DB.CallListDBHandler;
 import com.example.crystal.addressbook.R;
-import com.example.crystal.addressbook.Tab.Address.ShowAddressActivity;
 import com.example.crystal.addressbook.Tab.Message.SendMessageActivity;
 
 public class KeypadActivity extends AppCompatActivity {
     private String Phone = "";
-    private TextView tvPhone;
+    private Button tvPhone;
     private final String TAG = "SJ";
 
     @Override
@@ -29,7 +29,14 @@ public class KeypadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_keypad);
 
-        tvPhone = (TextView) findViewById(R.id.tvPhone);
+        tvPhone = (Button) findViewById(R.id.tvPhone);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Phone = "";
     }
 
     public void onClick (View v) {
@@ -96,8 +103,8 @@ public class KeypadActivity extends AppCompatActivity {
                 break;
             }
             case R.id.btnCall : {
+                if (Phone.length()<=0) break;
                 CallListDBHandler callDB = CallListDBHandler.getInstance(getApplicationContext());
-                callDB.INSERT(0, Phone);
 
                 //intent
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -127,11 +134,13 @@ public class KeypadActivity extends AppCompatActivity {
                     }
                     else {
                         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+tvPhone.getText().toString()));
+                        callDB.INSERT(0, Phone);
                         startActivity(intent);
                     }
                 }
                 else {
                     Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+tvPhone.getText().toString()));
+                    callDB.INSERT(0, Phone);
                     startActivity(intent);
                 }
 

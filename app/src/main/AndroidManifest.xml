@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Tab.Address.AddressActivity" />
-        <activity android:name=".Tab.Call.KeypadActivity" />
+        <activity android:name=".Tab.Keypad.KeypadActivity" />
         <activity android:name=".Tab.Call.CallActivity" />
         <activity android:name=".Tab.Message.MessageActivity" />
         <activity android:name=".Tab.TabActivity" />

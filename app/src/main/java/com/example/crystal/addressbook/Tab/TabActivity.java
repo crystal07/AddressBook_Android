@@ -8,7 +8,7 @@ import android.widget.TabHost;
 import com.example.crystal.addressbook.R;
 import com.example.crystal.addressbook.Tab.Address.AddressActivity;
 import com.example.crystal.addressbook.Tab.Call.CallActivity;
-import com.example.crystal.addressbook.Tab.Call.KeypadActivity;
+import com.example.crystal.addressbook.Tab.Keypad.KeypadActivity;
 import com.example.crystal.addressbook.Tab.Message.MessageActivity;
 
 public class TabActivity extends android.app.TabActivity {
