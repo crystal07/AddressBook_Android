@@ -44,6 +44,11 @@
                     android:contentDescription="name"
                     android:textSize="22sp" />
 
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
                 <TextView
                     android:id="@+id/tvOrganization"
                     android:layout_width="match_parent"
@@ -55,6 +60,10 @@
             </LinearLayout>
 
         </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -76,6 +85,10 @@
                 android:textSize="22sp" />
         </LinearLayout>
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -95,6 +108,10 @@
                 android:textSize="22sp" />
         </LinearLayout>
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -108,7 +125,7 @@
 
             <ScrollView
                 android:layout_width="318dp"
-                android:layout_height="153dp"
+                android:layout_height="match_parent"
                 android:layout_weight="0.95">
 
                 <LinearLayout
@@ -118,58 +135,97 @@
 
                     <TextView
                         android:id="@+id/tvMemo"
-                        android:textSize="22sp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:textSize="22sp" />
 
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
+            <ImageButton
                 android:id="@+id/btnCall"
-                android:layout_width="190dp"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@android:color/transparent"
                 android:onClick="onClick"
                 android:text="Call"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                app:srcCompat="@drawable/call" />
 
-            <Button
-                android:id="@+id/btnMessage"
-                android:layout_width="190dp"
+            <Space
+                android:layout_width="10dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:id="@+id/btnMessage"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@android:color/transparent"
                 android:onClick="onClick"
                 android:text="Message"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                app:srcCompat="@drawable/message" />
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:id="@+id/btnEdit"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:onClick="onClick"
+                android:text="Edit"
+                android:textSize="20sp"
+                app:srcCompat="@android:drawable/ic_menu_edit" />
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:id="@+id/btnDelete"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:onClick="onClick"
+                android:text="Delete"
+                android:textSize="20sp"
+                app:srcCompat="@android:drawable/ic_menu_delete" />
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:id="@+id/btnCancel"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:onClick="onClick"
+                android:text="Cancel"
+                android:textSize="20sp"
+                app:srcCompat="@drawable/back" />
+
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btnEdit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onClick"
-            android:text="Edit"
-            android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/btnDelete"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onClick"
-            android:text="Delete"
-            android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/btnCancel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onClick"
-            android:text="Cancel"
-            android:textSize="20sp" />
     </LinearLayout>
 </RelativeLayout>
