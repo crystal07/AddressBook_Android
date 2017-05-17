@@ -16,7 +16,8 @@
         android:id="@+id/tvPhone"
         android:layout_width="170dp"
         android:layout_height="50dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:textSize="24sp" />
 
     <CheckBox
         android:id="@+id/checkBox"

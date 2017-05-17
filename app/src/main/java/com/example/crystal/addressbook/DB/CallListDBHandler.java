@@ -85,6 +85,20 @@ public class CallListDBHandler extends SQLiteOpenHelper{
         return result;
     }
 
+    public int getReceived (int id) {
+        SQLiteDatabase db = getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT RECEIVE FROM CALLLIST WHERE _id = '" + id + "'", null);
+        cursor.moveToFirst();
+
+        int receive;
+
+        if (cursor.getCount() > 0) receive = Integer.parseInt(cursor.getString(0));
+        else receive = -1;
+
+        return receive;
+    }
+
     public String getLog(String phone) {
         SQLiteDatabase db = getReadableDatabase();
         String result = "";

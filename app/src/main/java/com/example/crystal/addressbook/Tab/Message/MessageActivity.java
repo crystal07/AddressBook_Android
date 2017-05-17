@@ -71,7 +71,7 @@ public class MessageActivity extends AppCompatActivity {
 
             item = new MessageListItem();
             item.setId(Integer.parseInt(Phone[i]));
-            item.setPicture(ContextCompat.getDrawable(this, R.drawable.icon));
+            item.setPicture(ContextCompat.getDrawable(this, R.drawable.human));
             item.setName(Phone[i+1]);
             item.setContent(Phone[i+2]);
 
@@ -86,32 +86,6 @@ public class MessageActivity extends AppCompatActivity {
                 Intent intent = new Intent(MessageActivity.this, SendMessageActivity.class);
                 startActivity(intent);
                 break;
-            }
-            case R.id.btnDelete : {
-                listView = (ListView) findViewById(R.id.lvMessage);
-                messageDB = MessageDBHandler.getInstance(getApplicationContext());
-
-                SparseBooleanArray checkedItems = listView.getCheckedItemPositions();
-
-                int count = adaptor.getCount() ;
-                for (int i = count-1; i >= 0; i--) {
-                    if (checkedItems.get(i)) {
-                        messageDB.DELETE_BY_ID(items.get(i).getId());
-                        items.remove(i) ;
-                    } }
-
-                listView.clearChoices() ;
-                adaptor.notifyDataSetChanged();
-
-                break;
-            }
-            case R.id.btnSelectAll : {
-                int count = 0 ;
-                count = adaptor.getCount() ;
-
-                for (int i=0; i<count; i++) {
-                    listView.setItemChecked(i, true) ;
-                }
             }
         }
     }

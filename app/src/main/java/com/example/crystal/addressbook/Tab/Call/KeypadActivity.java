@@ -97,7 +97,7 @@ public class KeypadActivity extends AppCompatActivity {
             }
             case R.id.btnCall : {
                 CallListDBHandler callDB = CallListDBHandler.getInstance(getApplicationContext());
-                callDB.INSERT(1, Phone);
+                callDB.INSERT(0, Phone);
 
                 //intent
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

@@ -96,7 +96,7 @@ public class AddressActivity extends AppCompatActivity {
         String[] NAME = NAMES.split(":");
 
         for (int i=0; (NAMES.length()>0) && (i<NAME.length); i++) {
-            adaptor.addItem(ContextCompat.getDrawable(this, R.drawable.icon), NAME[i]);
+            adaptor.addItem(ContextCompat.getDrawable(this, R.drawable.human), NAME[i]);
         }
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,11 +7,13 @@
     tools:context="com.example.crystal.addressbook.Tab.Call.KeypadActivity">
 
     <LinearLayout
-        android:layout_width="368dp"
-        android:layout_height="551dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteY="8dp"
-        tools:layout_editor_absoluteX="8dp">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,49 +22,56 @@
 
             <TextView
                 android:id="@+id/tvPhone"
-                android:layout_width="300dp"
-                android:layout_height="match_parent" />
+                android:layout_width="265dp"
+                android:layout_height="match_parent"
+                android:textSize="40sp" />
 
             <ImageButton
                 android:id="@+id/btnDelete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:backgroundTint="@android:color/transparent"
                 android:onClick="onClick"
-                app:srcCompat="@mipmap/ic_launcher" />
+                app:srcCompat="@drawable/delete" />
 
         </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
+            android:layout_height="10dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
+            <ImageButton
                 android:id="@+id/btn1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:background="@android:color/transparent"
                 android:onClick="onClick"
-                android:text="1" />
+                android:text="1"
+                app:srcCompat="@drawable/dial1" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/btn2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:background="@android:color/transparent"
                 android:onClick="onClick"
-                android:text="2" />
+                android:text="2"
+                app:srcCompat="@drawable/dial2" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/btn3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
                 android:layout_weight="1"
+                android:background="@android:color/transparent"
                 android:onClick="onClick"
-                android:text="3" />
+                android:text="3"
+                app:srcCompat="@drawable/dial3" />
         </LinearLayout>
 
         <LinearLayout
@@ -70,26 +79,32 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
+            <ImageButton
                 android:id="@+id/btn4"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:background="@android:color/transparent"
                 android:onClick="onClick"
-                android:text="4" />
+                android:text="4"
+                app:srcCompat="@drawable/dial4" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/btn5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:background="@android:color/transparent"
                 android:onClick="onClick"
-                android:text="5" />
+                android:text="5"
+                app:srcCompat="@drawable/dial5" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/btn6"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:background="@android:color/transparent"
                 android:onClick="onClick"
-                android:text="6" />
+                android:text="6"
+                app:srcCompat="@drawable/dial6" />
         </LinearLayout>
 
         <LinearLayout
@@ -97,26 +112,32 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
+            <ImageButton
                 android:id="@+id/btn7"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:background="@android:color/transparent"
                 android:onClick="onClick"
-                android:text="7" />
+                android:text="7"
+                app:srcCompat="@drawable/dial7" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/btn8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:background="@android:color/transparent"
                 android:onClick="onClick"
-                android:text="8" />
+                android:text="8"
+                app:srcCompat="@drawable/dial8" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/btn9"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:background="@android:color/transparent"
                 android:onClick="onClick"
-                android:text="9" />
+                android:text="9"
+                app:srcCompat="@drawable/dial9" />
         </LinearLayout>
 
         <LinearLayout
@@ -124,30 +145,37 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <Button
+            <ImageButton
                 android:id="@+id/btnMessage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
                 android:layout_weight="1"
+                android:background="@android:color/transparent"
                 android:onClick="onClick"
-                android:text="Message" />
+                android:text="Message"
+                app:srcCompat="@drawable/message" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/btn0"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
                 android:layout_weight="1"
+                android:background="@android:color/transparent"
                 android:onClick="onClick"
-                android:text="0" />
+                android:text="0"
+                app:srcCompat="@drawable/dial0" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/btnCall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
                 android:layout_weight="1"
+                android:background="@android:color/transparent"
                 android:onClick="onClick"
-                android:text="Call" />
+                android:text="Call"
+                app:srcCompat="@drawable/call" />
         </LinearLayout>
 
     </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+
+</RelativeLayout>

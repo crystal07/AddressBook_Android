@@ -106,7 +106,8 @@ public class CallActivity extends AppCompatActivity {
         for (int i=0; (PHONES.length() > 0) && (i<Phone.length); i+=2) {
             item = new CallListViewItem();
             item.setId(Integer.parseInt(Phone[i]));
-            item.setPicture(ContextCompat.getDrawable(this, R.drawable.icon));
+            if (callDB.getReceived(item.getId()) == 1) item.setPicture(ContextCompat.getDrawable(this, R.drawable.receive_call));
+            else item.setPicture(ContextCompat.getDrawable(this, R.drawable.call_call));
             if (addressDB.findName(Phone[i+1]) == null) item.setPhone(Phone[i+1]);
             else item.setPhone(addressDB.findName(Phone[i+1]));
             adaptor.add(item);

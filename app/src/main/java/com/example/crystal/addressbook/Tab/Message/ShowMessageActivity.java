@@ -75,11 +75,11 @@ public class ShowMessageActivity extends AppCompatActivity {
             item.setId(Integer.parseInt(LOGS[i]));
             if (LOGS[i+1].equals(receiver)) {
                 item.setName(LOGS[i+2]);
-                item.setPicture(ContextCompat.getDrawable(this, R.drawable.icon));
+                item.setPicture(ContextCompat.getDrawable(this, R.drawable.send_message));
             }
             else {
                 item.setName(LOGS[i+1]);
-                item.setPicture(ContextCompat.getDrawable(this, R.drawable.receive));
+                item.setPicture(ContextCompat.getDrawable(this, R.drawable.receive_message));
             }
             item.setContent(LOGS[i+3]);
 
